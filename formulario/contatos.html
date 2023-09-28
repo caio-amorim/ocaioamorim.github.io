@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilo.css"/>
+    <title>Formulario</title>
+</head>
+<body>
+    <div class="cabeçalho">
+        <h1>Fundamentos da Web</h1>
+        <h2>Exercícios</h2>
+        <div class="barra">
+            <a href="./index.html">Retornar</a>
+        </div>
+    </div>
+    <main>
+        <h1>Contatos</h1>
+        <p>
+            Nesta atividade, você deve desenvolver uma tela de contatos de um site. Considere a natureza dos campos.<br>
+            Seus dados devem ser enviados numa requisição HTTP com método POST para a URL http://httpbin.org/post<br>
+            Entre em contato conosco
+        </p>
+        <form action="http://httpbin.org/post" method="post">
+            <fieldset>
+                <legend>Entre em contato conosco!</legend>
+                <div>
+                    <label for="nome">Nome</label>
+                    <input type="text" placeholder="Digite seu nome">
+                </div>
+                <div>
+                    <label for="assunto">Assunto</label>
+                    <input type="date" placeholder="dd/mm/aaaa">
+                </div>
+                <div>
+                    <label for="data">Data da ocorrência</label>
+                    <input type="date" placeholder="dd/mm/aaaa">
+                </div>
+                <div>
+                    <label for="foto">Foto da ocorrência</label>
+                    <input type="file" placeholder="Escolher Arquivo">
+                </div>
+            </fieldset>
+        </form>
+    </main>
+</body>
+</html>
