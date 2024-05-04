@@ -442,7 +442,7 @@
   // implemente a função
 
   const calcIMC = (peso, altura) => {
-    return peso/(altura*altura); // programe aqui
+    return peso / (altura * altura); // programe aqui
   };
 
   const getFaixa = (imc) => {
@@ -455,8 +455,8 @@
   };
 
   const respondeQuestao02 = (imc) => {
-    document.querySelector("#q02-result").innerHTML = 
-                          `<li>Seu IMC é ${imc}</li>
+    document.querySelector("#q02-result").innerHTML =
+      `<li>Seu IMC é ${imc}</li>
                           <li>Você está na faixa: ${getFaixa(imc)}</li>`
   }
 
@@ -475,19 +475,22 @@
   /*****************************************
    * QUESTÃO 03
    */
-
   const lancadorDados = () => Math.ceil(Math.random() * 6);
 
   btn03.addEventListener("click", () => {
-    let lances = [0, 0, 0, 0, 0, 0]; //6 faces do dado
-    console.log(lancadorDados());
-    //for(let i=0; i<1000000; i++){
-    //lance o dado
-    //contabilize os lances
-    //}
-    // a frequencia é total de #face/total de lancamentos
+    let lances = [0, 0, 0, 0, 0, 0]; // 6 faces do dado
+    const totalLances = 1000000;
+    for (let i = 0; i < totalLances; i++) {
+      const resultado = lancadorDados();
+      lances[resultado - 1]++;
+    }
+    for (let x = 0; x < lances.length; x++) {
+      const ocorrencias = lances[x];
+      const frequencia = (ocorrencias / totalLances) * 100;
+      document.querySelector(".face-ocorr-" + (x + 1)).textContent = ocorrencias;
+      document.querySelector(".face-freq-" + (x + 1)).textContent = frequencia.toFixed(2) + "%";
+    }
 
-    //atualize a tabela com seus valores
   });
 
   /*****************************************
@@ -501,17 +504,27 @@
   const insereNome = (nome) => {
     const listaNomes = document.querySelector("#q04-nomes");
     //inserir nomes em listaNomes
+    listaNomes.innerHTML += `<li>${nome}</li>`;
   };
 
   const inverteNome = (nome) => {
     //programe inverte nome aqui
-    return "teste";
+    let nomeInvertido = '';
+    for (let i = nome.length - 1; i >= 0; i--) {
+      nomeInvertido += nome[i];
+    }
+    return nomeInvertido;
   };
 
   // insere nome digitado
   btnAddNome.addEventListener("click", () => {
     const listaNomes = document.querySelector("#q04-nomes");
-    if (getNome()) listaNomes.innerHTML += `<li>${getNome()}</li>`;
+    if (getNome()) {
+      insereNome(nome);
+      document.querySelector("#q04-nome").value = '';
+
+    }
+
   });
 
   btn04.addEventListener("click", () => {
@@ -533,21 +546,26 @@
   const getPalavra = () => document.querySelector("#q05-palavra").value;
 
   const verificaPalindromo = (palavra) => {
-    //palavra[0] == palavra[palavra.length-1]
-    //palavra[1] == palavra[palavra.length-2]
-    //palavra[2] == palavra[palavra.length-3] ...
-    // até chegar no meio; se todas iguais, é palíndromo
-    // caso contrário, não
-    return false; // programe aqui
+
+    palavra = palavra.toLowerCase();
+    const meio = Math.floor(palavra.length / 2);
+    for (let i = 0; i < meio; i++) {
+      if (palavra[i] !== palavra[palavra.length - 1 - i]) {
+        return false;
+      }
+    }
+      return true; // programe aqui
   };
-  btn05.addEventListener("click", () => {
-    const palavra = getPalavra();
-    const resp = document.querySelector("#q05-result");
-    if (palavra)
-      resp.innerHTML = `A palavra ${palavra}
+
+    btn05.addEventListener("click", () => {
+      const palavra = getPalavra();
+      const resp = document.querySelector("#q05-result");
+      if (palavra) {
+        resp.innerHTML = `A palavra ${palavra}
             ${verificaPalindromo(palavra) ? "é" : "não é"}
             um palíndromo`;
-  });
+      }
+    });
 </script>
 
 </html>
