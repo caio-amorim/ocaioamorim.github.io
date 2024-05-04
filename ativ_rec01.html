@@ -534,7 +534,7 @@
     //para cada li de liNomesDigitados, inverta e insira em listaInvertido
     for (let i = 0; i < liNomesDigitados.length; i++) {
       const nome = liNomesDigitados[i].textContent;
-      const nomeInvertido = inverteNome(getNome);
+      const nomeInvertido = inverteNome(nome);
       listaInvertido.innerHTML += `<li>${nomeInvertido}</li>`;
     }
   });
