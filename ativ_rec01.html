@@ -501,17 +501,17 @@
   //funcao que retorna o nome digitado
   const getNome = () => document.querySelector("#q04-nome").value;
 
-  const insereNome = (nome) => {
+  const insereNome = (getNome) => {
     const listaNomes = document.querySelector("#q04-nomes");
     //inserir nomes em listaNomes
-    listaNomes.innerHTML += `<li>${nome}</li>`;
+    listaNomes.innerHTML += `<li>${getNome}</li>`;
   };
 
-  const inverteNome = (nome) => {
+  const inverteNome = (getNome) => {
     //programe inverte nome aqui
     let nomeInvertido = '';
     for (let i = nome.length - 1; i >= 0; i--) {
-      nomeInvertido += nome[i];
+      nomeInvertido += getNome[i];
     }
     return nomeInvertido;
   };
@@ -520,7 +520,7 @@
   btnAddNome.addEventListener("click", () => {
     const listaNomes = document.querySelector("#q04-nomes");
     if (getNome()) {
-      insereNome(nome);
+      insereNome(getNome);
       document.querySelector("#q04-nome").value = '';
 
     }
@@ -534,7 +534,7 @@
     //para cada li de liNomesDigitados, inverta e insira em listaInvertido
     for (let i = 0; i < liNomesDigitados.length; i++) {
       const nome = liNomesDigitados[i].textContent;
-      const nomeInvertido = inverteNome(nome);
+      const nomeInvertido = inverteNome(getNome);
       listaInvertido.innerHTML += `<li>${nomeInvertido}</li>`;
     }
   });
