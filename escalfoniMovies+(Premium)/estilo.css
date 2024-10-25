@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+#catalogo {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    justify-content: space-around;
+}
+
+.ficha-filme {
+    background-color: white;
+    border: 1px white;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 300px;
+}
+
+.ficha-filme img {
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.ficha-filme h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.ficha-filme p {
+    font-size: 14px;
+    color: black;
+}
+
+.faixa-etaria {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.faixa-verde {
+    background-color: green;
+    color: white;
+}
+
+.faixa-amarela {
+    background-color: yellow;
+    color: black;
+}
+
+.faixa-vermelha {
+    background-color: red;
+    color: white;
+}
+
+.rating {
+    margin: 10px;
+    text-align: center;
+}
+
+.star {
+    color: gold;
+    font-size: 20px;
+}
