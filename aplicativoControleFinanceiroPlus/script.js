@@ -86,7 +86,6 @@ iniciar();
 
 formulario.addEventListener('submit', adicionarTransacao);
 
-// Filtrar transações por período e gerar gráficos
 botaoRelatorio.addEventListener('click', () => {
   const periodoTransacoes = transacoes.filter(transacao => {
     const dataTransacao = new Date(transacao.data);
