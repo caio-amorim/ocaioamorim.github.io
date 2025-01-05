@@ -7,16 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Conversor de Moedas</h1>
-    
-    <label for="valor">Valor:</label>
-    <input type="number" id="valor" placeholder="Insira o valor">
-    <label for="moedaOrigem">Moeda de Origem:</label>
-    <input type="text" id="moedaOrigem">
-    <label for="moedaDestino">Moeda de Destino:</label>
-    <input type="text" id="moedaDestino">
-    <button onclick="converter()">Converter</button>
-    
-    <h2 id="resultado"></h2>
+    <h1>Conversor de Moeda</h1>
+    <label for="quantia">Quantia:</label>
+    <input type="number" id="quantia">
+    <br>
+    <label for="deMoeda">De:</label>
+    <input type="text" id="deMoeda">
+    <br>
+    <label for="paraMoeda">Para:</label>
+    <input type="text" id="paraMoeda">
+    <br>
+    <button id="botaoConverter">Converter</button>
+    <h2>Resultado da Conversão</h2>
+    <p id="resultado"></p>
+    <h2>Conversão para Múltiplas Moedas</h2>
+    <p id="resultadosMultiplos"></p>
 </body>
 </html>
