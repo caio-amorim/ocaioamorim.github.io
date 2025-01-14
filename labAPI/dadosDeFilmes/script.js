@@ -1,34 +1,28 @@
-const chaveAPI = 'ebdd1400';
-const url = 'https://www.omdbapi.com/';
-const btnBuscar = document.querySelector("#buscarFilmes");
-async function buscarFilmes(titulo) {
-    let resposta = await fetch(`${url}?s=${titulo}&apikey=${chaveAPI}`);
+const chaveApi = "ebdd1400";
+const titulo = document.querySelector('#tituloFilme');
+const buscarFilme = document.querySelector('#buscarFilmes');
+const resultado = document.querySelector('#filmesApos2000');
+async function buscarFilmePorTitulo(titulo) {
+    let resposta = await fetch(`https://www.omdbapi.com/?apikey=${chaveApi}&t=${titulo}`);
     resposta = await resposta.json();
-    return resposta.Search;
+    return resposta;
 }
-async function obterDetalhesFilme(id) {
-    let resposta = await fetch(`${url}?i=${id}&apikey=${chaveAPI}`);
-    resposta = await resposta.json();
-    return {
-        titulo: resposta.Title,
-        ano: resposta.Year,
-        diretor: resposta.Director,
-    };
+function exibirFilmes(elemento, filmes) {
+    elemento.innerHTML = filmes.map(filme => `<h3>${filme.titulo} (${filme.ano})</h3><p><strong>Diretor:</strong>${filme.diretor}</p>`).join('');
 }
-async function processarFilmes(titulo) {
-    const filmesBasicos = await buscarFilmes(titulo);
-    const detalhes = await Promise.all(filmesBasicos.map(filme => obterDetalhesFilme(filme.imdbID)));
-    const filmes = detalhes.map(filme => `<p>Título: ${filme.titulo}, Ano: ${filme.ano}, Diretor: ${filme.diretor}</p>`).join('');
-    document.querySelector('#resultadosFilmes').innerHTML = filmes;
-    let filmesApos2000 = [];
-    detalhes.forEach(filme => {
-        const ano = parseInt(filme.ano);
-        if (ano > 2000) filmesApos2000.push(filme);
-    });
-    filmesApos2000 = filmesApos2000.map(filme => `<p>Título: ${filme.titulo}, Ano: ${filme.ano}, Diretor: ${filme.diretor}</p>`).join('');
-    document.querySelector('#filmesApos2000').innerHTML = filmesApos2000;
+async function gerenciarFilmes() {
+    const tituloFilme = titulo.value.trim();
+    let filme = await buscarFilmePorTitulo(tituloFilme);
+    if (filme && filme.Response === "True") {
+        filme = {
+            titulo: filme.Title,
+            ano: parseInt(filme.Year, 10),
+            diretor: filme.Director,
+        };
+        exibirFilmes(resultado, [filme]);
+        if (filme.ano > 2000) {
+            exibirFilmes(resultado, [filme]);
+        } 
+    }
 }
-btnBuscar.addEventListener('click', () => {
-    const titulo = document.querySelector('#tituloFilme').value;
-    processarFilmes(titulo);
-});
+buscarFilme.addEventListener('click', gerenciarFilmes);
