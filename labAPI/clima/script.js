@@ -12,10 +12,10 @@ async function obterClima() {
         umidade: umidade,
         condicao: condicao
     };
-    const climaExtremo = [detalhesClima].filter(function (c) {
-        return c.temperatura > 35 || c.temperatura < 5;
+    const climaExtremo = detalhesClima.filter(function (clima) {
+        return clima.temperatura > 35 || clima.temperatura < 5;
     });
-    resultado.innerHTML = "Temperatura: " + detalhesClima.temperatura + "°C; Umidade: " + detalhesClima.umidade + "%; Condição atual: " + detalhesClima.condicao;
+    resultado.innerHTML = `Temperatura: ${detalhesClima.temperatura}°C; Umidade: ${detalhesClima.umidade}%; Condição atual: ${detalhesClima.condicao}`;
     if (climaExtremo.length > 0) {
         resultado.innerHTML += " Clima Extremo!";
     }
