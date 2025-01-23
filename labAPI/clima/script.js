@@ -12,11 +12,8 @@ async function obterClima() {
         umidade: umidade,
         condicao: condicao
     };
-    const climaExtremo = detalhesClima.filter(function (clima) {
-        return clima.temperatura > 35 || clima.temperatura < 5;
-    });
     resultado.innerHTML = `Temperatura: ${detalhesClima.temperatura}°C; Umidade: ${detalhesClima.umidade}%; Condição atual: ${detalhesClima.condicao}`;
-    if (climaExtremo.length > 0) {
+    if (detalhesClima.temperatura > 35 || detalhesClima.temperatura < 5) {
         resultado.innerHTML += " Clima Extremo!";
     }
 }

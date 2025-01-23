@@ -1,12 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Biblioteca</title>
 </head>
+
 <body>
-    
+    <h1>Gerenciador de Biblioteca</h1>
+    <input type="number" id="id" placeholder="ID do Livro">
+    <input type="text" id="titulo" placeholder="Título">
+    <input type="text" id="autor" placeholder="Autor">
+    <input type="number" id="anoPublicacao" placeholder="Ano de Publicação">
+    <button id="adicionarLivroBtn">Adicionar Livro</button>
+    <button id="listarLivrosBtn">Listar Livros</button>
+    <table id="tabelaLivros">
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano</th>
+            <th>Disponível</th>
+            <th>Ações</th>
+        </tr>
+    </table>
 </body>
+
 </html>

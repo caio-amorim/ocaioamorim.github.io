@@ -25,17 +25,22 @@ class Biblioteca {
     }
     atualizarLivro(id, novosDados) {
         const livro = this.livros.find(l => l.id === id);
-        ivro.titulo = novosDados.titulo;
-        livro.autor = novosDados.autor;
-        livro.anoPublicacao = novosDados.anoPublicacao;
-        livro.disponivel = novosDados.disponivel;
+        if (livro) {
+            livro.titulo = novosDados.titulo;
+            livro.autor = novosDados.autor;
+            livro.anoPublicacao = novosDados.anoPublicacao;
+            livro.disponivel = novosDados.disponivel;
+            this.salvarDados();
+        }
     }
     removerLivro(id) {
         this.livros = this.livros.filter(l => l.id !== id);
         this.salvarDados();
     }
     salvarDados() {
-        const livrosString = this.livros.map(livro => `${livro.id}|${livro.titulo}|${livro.autor}|${livro.anoPublicacao}|${livro.disponivel}`).join("\n");
+        const livrosString = this.livros
+            .map(livro => `${livro.id}|${livro.titulo}|${livro.autor}|${livro.anoPublicacao}|${livro.disponivel}`)
+            .join("\n");
         localStorage.setItem('biblioteca', livrosString);
     }
     carregarDados() {
@@ -49,15 +54,53 @@ class Biblioteca {
     }
 }
 const biblioteca = new Biblioteca();
-const livro1 = new Livro(1, 'O Senhor dos Anéis', 'J.R.R. Tolkien', 1954, true);
-biblioteca.adicionarLivro(livro1);
-const livro2 = new Livro(2, '1984', 'George Orwell', 1949, false);
-biblioteca.adicionarLivro(livro2);
-console.log('Lista de Livros:');
-biblioteca.listarLivros().forEach(livro => console.log(livro.detalhes()));
-biblioteca.atualizarLivro(1, { titulo: 'O Hobbit', anoPublicacao: 1937 });
-console.log('Após atualização:');
-biblioteca.listarLivros().forEach(livro => console.log(livro.detalhes()));
-biblioteca.removerLivro(2);
-console.log('Após remoção:');
-biblioteca.listarLivros().forEach(livro => console.log(livro.detalhes()));
+function adicionarLivro() {
+    const id = Number(document.querySelector('#id').value);
+    const titulo = document.querySelector('#titulo').value;
+    const autor = document.querySelector('#autor').value;
+    const anoPublicacao = Number(document.querySelector('#anoPublicacao').value);
+    if (id && titulo && autor && anoPublicacao) {
+        const livro = new Livro(id, titulo, autor, anoPublicacao);
+        biblioteca.adicionarLivro(livro);
+        listarLivros();
+    } else {
+        alert('Preencha todos os campos!');
+    }
+}
+function listarLivros() {
+    const tabela = document.querySelector('#tabelaLivros');
+    tabela.innerHTML = `
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Ano</th>
+            <th>Disponível</th>
+            <th>Ações</th>
+        </tr>
+    `;
+    biblioteca.listarLivros().forEach(livro => {
+        const linha = document.createElement('tr');
+        let disponivel = 'Não';
+        if (livro.disponivel) {
+            disponivel = 'Sim';
+        }
+        linha.innerHTML = `
+            <td>${livro.id}</td>
+            <td>${livro.titulo}</td>
+            <td>${livro.autor}</td>
+            <td>${livro.anoPublicacao}</td>
+            <td>${disponivel}</td>
+            <td>
+                <button onclick="removerLivro(${livro.id})">Remover</button>
+            </td>
+        `;
+        tabela.appendChild(linha);
+    });
+}
+function removerLivro(id) {
+    biblioteca.removerLivro(id);
+    listarLivros();
+}
+document.querySelector('#adicionarLivroBtn').addEventListener('click', adicionarLivro);
+document.querySelector('#listarLivrosBtn').addEventListener('click', listarLivros);
