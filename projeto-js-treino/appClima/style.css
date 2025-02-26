@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #222;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #fff;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+.card {
+    width: 90%;
+    max-width: 470px;
+    background: linear-gradient(135deg, #00feba, #5b548a);
+    margin: 100px auto 0;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.pesquisar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.pesquisar input {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    color: #555;
+    padding: 10px 25px;
+    height: 60px;
+    border-radius: 30px;
+    flex: 1;
+    margin-right: 16px;
+    font-size: 1rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.pesquisar input:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 234, 0.5);
+}
+
+.pesquisar button {
+    border: 0;
+    outline: 0;
+    background: #ebfffc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.pesquisar button:hover {
+    transform: scale(1.05);
+}
+
+.pesquisar button:focus {
+    box-shadow: 0 0 0 3px rgba(0, 255, 234, 0.5);
+}
+
+.pesquisar button img {
+    width: 16px;
+}
+
+.clima {
+    display: none;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.icone-clima {
+    width: 170px;
+    margin-top: 30px;
+    transition: transform 0.3s ease;
+}
+
+.animate-icon {
+    animation: bounce 0.6s;
+}
+
+.clima h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.clima h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-top: -10px;
+}
+
+.detalhes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.col {
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.col img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+.umidade, .vento {
+    font-size: 1.75rem;
+    margin-top: -6px;
+}
+
+.erro {
+    text-align: left;
+    margin: 10px;
+    font-size: 0.875rem;
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px 15px;
+        margin: 50px auto 0;
+    }
+
+    .pesquisar input,
+    .pesquisar button {
+        height: 50px;
+    }
+
+    .icone-clima {
+        width: 120px;
+        margin-top: 20px;
+    }
+
+    .clima h1 {
+        font-size: 3rem;
+    }
+
+    .clima h2 {
+        font-size: 2rem;
+    }
+
+    .umidade,
+    .vento {
+        font-size: 1.5rem;
+    }
+}
